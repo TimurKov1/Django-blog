@@ -1,0 +1,87 @@
+{% extends 'project/templ.html' %}
+{% load static %}        
+        {% block posts %}
+			<div class="wrap-container">
+				<!-----------------content-box-4-------------------->
+				<section class="content-box box-style-1 box-4">
+					<div class="zerogrid" style="width: 100%">
+						<div class="wrap-box"><!--Start Box-->
+							{% for post in text %}
+                                <div class="row">
+                                    <article>
+                                        <div class="col-1">
+                                            {% if post.photo %}
+												<p class='photo'><img src="{{post.photo.url}}"></p>
+											{% else %}
+											<p></p>
+											{% endif %}
+                                        </div>
+                                        <div class="col-1">
+                                            <div class="entry-content t-center">
+                                                <h3>{{ post.title }}</h3>
+                                                <p class="p">{{ post.message }}</p>
+												<h5> {{ post.date }} </h4>
+												<h5> {{ post.author }} </h4>
+                                                <style>
+                                                    .photo {
+														margin-top: 35px;
+														width: 600px;
+														height: auto;
+														margin-left: 415px;
+													}
+													.p {
+                                                        word-wrap: break-word;
+														overflow: hidden;
+														text-overflow: ellipsis;
+														display: -webkit-box;
+														line-height: 21px;
+														max-height: 100px;
+														-webkit-line-clamp: 4;
+														-webkit-box-orient: vertical;
+													}		
+                                                    
+													h5 {
+														text-align: end;
+														margin: 15px;
+													}
+
+													.row {
+														border: 1px solid gray;
+													}
+
+													.regist {
+														text-align: end;
+													}
+                                                </style>
+                                                <a class="button" href="{% url 'postdetails' post.id %}">Читать</a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            {% endfor %}
+						</div>
+					</div>
+				</section>
+			</div>
+		{% endblock %}
+        
+        {% block carousel %}
+        <script src="{% static 'blog/owl-carousel/owl.carousel.js' %}"></script>
+		<script>
+		$(document).ready(function() {
+		  $("#owl-slide").owlCarousel({
+			autoPlay: 3000,
+			items : 1,
+			itemsDesktop : [1199,1],
+			itemsDesktopSmall : [979,1],
+			itemsTablet : [768, 1],
+			itemsMobile : [479, 1],
+			navigation: true,
+			navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>', '<i class="fa fa-chevron-right fa-5x"></i>'],
+			pagination: false
+		  });
+		});
+		</script>
+        {% endblock %}
+</body>
+</html>

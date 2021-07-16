@@ -1,0 +1,122 @@
+
+{% extends 'project/templ.html' %}	
+{% load static %}	
+		{% block posts %}
+			<div class="wrap-container">
+				<!-----------------Content-Box-------------------->
+				<div id="main-content">
+					<div class="wrap-content">
+						<div class="row">
+							{% for post in text %}
+								<article class="single-post zerogrid">
+									<div class="row wrap-post"><!--Start Box-->
+										<img class='image' src="{{ user.userprofile.avatar.url }}" alt="">
+										<div class="entry-header">
+											<span class="time"> {{ post.date }} {{ post.author }} </span>
+											<h2 class="entry-title"><a href="#"> {{ post.title }} </a></h2>
+										</div>
+										<div class="post-thumbnail-wrap">
+											{% if post.photo %}
+												<img class='photo' src="{{ post.photo.url }}">
+											{% else %}
+											<p></p>
+											{% endif %}
+										</div>
+										<div class="entry-content">
+											<p class="p"> {{ post.message }} </p>
+											<center><a class="button " href=" {% url 'postdetails' post.id %} ">Читать</a></center>
+										</div>
+										<style>
+											.p {
+												word-wrap: break-word;
+												overflow: hidden;
+												text-overflow: ellipsis;
+												display: -webkit-box;
+												line-height: 21px;
+												max-height: 100px;
+												-webkit-line-clamp: 4;
+												-webkit-box-orient: vertical;
+											}
+
+											.image {
+												text-align: right;
+												width: 100px;
+											}
+
+											.photo {
+												width: 600px;
+												height: auto;
+											}
+
+											.paginator .number {
+												margin: 15px;
+											}
+
+											.paginator .number {
+												cursor: pointer;
+												color: #323030;
+												border: 2px solid #323030;
+												border-radius: 45px;
+												padding: 10px 20px;
+												background-color: transparent;
+												font-size: 20px;
+												transition: ease-in .25s all;
+												margin: 15px;
+											}
+
+											.paginator .number:hover {
+												border: 2px solid #323030;
+												background-color: #323030;
+												color: #fff;
+											}
+
+											.paginator {
+												margin-bottom: 50px;
+											}
+
+											.numb {
+												color: #fff;
+												border: 2px solid #323030;
+												background-color: #323030;
+												border-radius: 45px;
+												padding: 10px 20px;
+												font-size: 20px;
+												margin: 15px;
+											}
+										</style>
+									</div>
+								</article>
+							{% endfor %}	
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{% if is_paginated %}
+
+			<div style="text-align: center;" class="paginator">
+				
+				{% if page_obj.has_previous %}
+					<a class="number" href="{% url 'blog' %}">Начало</a>
+					<a class="number" href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+				{% endif %}
+
+				{% for num in page_obj.paginator.page_range %}
+
+					{% if num == page_obj.number %}
+						<a class='numb'>{{ num }}</a>
+					{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+						<a class="number" href="?page={{ num }}">{{ num }}</a>
+					{% endif %}
+
+				{% endfor %}
+
+				{% if page_obj.has_next %}
+					<a class="number" href="?page={{ page_obj.next_page_number }}">Следующая</a>
+					<a class="number" href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>
+				{% endif %}
+
+			</div>
+
+		{% endif %}
+		{% endblock %}

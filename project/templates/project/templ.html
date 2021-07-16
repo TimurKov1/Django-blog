@@ -1,0 +1,184 @@
+
+{% load static %}
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+    <!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>zVintauge - Free Html5 Templates</title>
+	<meta name="description" content="Free Responsive Html5 Css3 Templates | zerotheme.com">
+	
+    <!-- Mobile Specific Metas
+	================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <!-- CSS
+	================================================== -->
+  	<link rel="stylesheet" href="{% static 'blog/css/zerogrid.css' %}">
+	<link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+	
+	<!-- Custom Fonts -->
+    <link href="{% static 'blog/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+	
+	<link rel="stylesheet" href="{% static 'blog/css/menu.css' %}">
+	<script src="{% static 'blog/js/jquery1111.min.js' %}" type="text/javascript"></script>
+	<script src="{% static 'blog/js/script.js' %}"></script>
+	
+	<!-- Owl Carousel Assets -->
+    <link href="{% static 'blog/owl-carousel/owl.carousel.css' %}" rel="stylesheet">
+	
+	<!--[if lt IE 8]>
+       <div style=' clear: both; text-align:center; position: relative;'>
+         <a href="http://windows.microsoft.com/en-US/internet-explorer/Items/ie/home?ocid=ie6_countdown_bannercode">
+           <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+        </a>
+      </div>
+    <![endif]-->
+    <!--[if lt IE 9]>
+		<script src="js/html5.js"></script>
+		<script src="js/css3-mediaqueries.js"></script>
+	<![endif]-->
+	
+</head>
+
+<body class="home-page">
+	<div class="wrap-body">
+		<header class="">
+			<div class="head">
+				<div class="logo">
+					<a href="#">Our Blog</a>
+				</div>
+				{% if user.is_authenticated %}
+					<div class="user">
+						<a href=" {% url 'profile' %} ">Профиль</a>
+						<a href=" {% url 'logout' %} ">Выход</a>
+					</div>
+				{% else %}
+					<div class="user">
+						<a href=" {% url 'login' %} ">Войти</a>
+						<a class="regist" href=" {% url 'reg' %} ">Регистрация</a>
+					</div>
+				{% endif %}
+			</div>
+			<style>
+				.user a {
+					margin: 30px;
+					text-decoration: none;
+					display: inline-block;
+					width: 140px;
+					height: 45px;
+					line-height: 45px;
+					border-radius: 45px;
+					margin: 10px 20px;
+					font-family: 'Montserrat', sans-serif;
+					font-size: 11px;
+					text-transform: uppercase;
+					text-align: center;
+					letter-spacing: 3px;
+					font-weight: 600;
+					color: #524f4e;
+					background: white;
+					box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+					transition: .3s;
+				}
+
+				.user .regist {
+					width: 200px;
+				}
+
+				.user a:hover {
+					background: #000000;
+					box-shadow: 0 15px 20px rgba(0, 0, 0, .4);
+					color: white;
+					transform: translateY(-7px);
+				}
+
+				.user {
+					margin-right: 50px;
+				}
+
+				.head {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					margin-left: 580px;
+				}
+			</style>
+			<div id="cssmenu" class="align-center">
+				<ul>
+					<li class="active"><a href=" {% url 'home' %} "><span>Главная</span></a></li>
+					<li class="has-sub"><a href=" {% url 'blog' %} "><span>Блог</span></a></li>
+					<li><a href="url 'post"><span>Посты</span></a></li>
+				</ul>
+			</div>
+			<div id="owl-slide" class="owl-carousel">
+				<div class="item">
+					<img src="{% static 'blog/images/slide1.jpg' %}" />
+				</div>
+				<div class="item">
+					<img src="{% static 'blog/images/slide2.jpg' %}" />
+				</div>
+				<div class="item">
+					<img src="{% static 'blog/images/slide3.jpg' %}" />
+					
+				</div>
+			</div>
+		</header>
+        <section id="container">
+			<div class="message">
+				{% if messages %}
+					{% for message in messages %}
+						{{ message }}
+					{% endfor %}
+				{% endif %}
+			</div>
+
+            {% block posts %}
+            {% endblock %}
+        </section>
+        <footer>
+			<div class="zerogrid wrap-footer">
+				<div class="row_1">
+					<div class="col-1-4 col-footer-1">
+						<div class="wrap-col">
+							<h3 class="widget-title">About Us</h3>
+							<p>Ut volutpat consectetur aliquam. Curabitur auctor in nis ulum ornare. Metus elit vehicula dui. Curabitur auctor in nis ulum ornare. Sed consequat, augue condimentum fermentum</p>
+							<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque la udantium</p>
+						</div>
+					</div>
+					<div class="col-1-4 col-footer-2">
+						<div class="wrap-col">
+							<h3 class="widget-title">Recent Post</h3>
+							<ul>
+								<li><a href="#">MOST VISITED COUNTRIES</a></li>
+								<li><a href="#">5 PLACES THAT MAKE A GREAT HOLIDAY</a></li>
+								<li><a href="#">PEBBLE TIME STEEL IS ON TRACK TO SHIP IN JULY</a></li>
+								<li><a href="#">STARTUP COMPANY???S CO-FOUNDER TALKS ON HIS NEW PRODUCT</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="zerogrid bottom-footer">
+				<div class="row_1">
+					<div class="bottom-social">
+						<a href="#"><i class="fa fa-home"></i></a>
+						<a href="#"><i class="fa fa-instagram"></i></a>
+						<a href="#"><i class="fa fa-twitter"></i></a>
+						<a href="#"><i class="fa fa-bell"></i></a>
+						<a href="#"><i class="fa fa-pinterest"></i></a>
+						<a href="#"><i class="fa fa-vimeo"></i></a>
+						<a href="#"><i class="fa fa-linkedin"></i></a>
+						<a href="#"><i class="fa fa-youtube"></i></a>
+					</div>
+				</div>
+			</div>
+		</footer>
+        {% block carousel %}
+        {% endblock %}
+	</div>

@@ -1,0 +1,44 @@
+{% extends 'project/templ.html' %}
+    {% block posts %}
+        <div class="form_1">
+            <h2 class="name">Вы успешно вышли из вашего аккаунта</h2>
+            <div class="a">
+                <a href=" {% url 'login' %} ">Войти еще раз</a>
+                <a href=" {% url 'home' %} ">Вернуться на главную</a>
+            </div>
+        </div>
+        <style>
+            .form_1 h2 {
+                margin-left: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 50px;
+                padding: 50px;
+                padding-bottom: 0px;
+            }
+            
+            .form_1 a {
+                color: #323030;
+                border: 2px solid #323030;
+                border-radius: 45px;
+                padding: 15px 25px;
+                background-color: transparent;
+                font-size: 20px;
+                margin: 50px;
+                transition: ease-in .25s all;
+                display: inline-block;
+            }
+
+            .form_1 .a {
+                margin-left: 420px;
+                margin-bottom: 50px;
+            }
+
+            .form_1 a:hover {
+                border: 2px solid #323030;
+                background-color: #323030;
+                color: #fff;
+            }
+        </style>
+    {% endblock %}
